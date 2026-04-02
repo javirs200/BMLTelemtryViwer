@@ -26,9 +26,7 @@ jobs:
 
       - name: Build EXE with PyInstaller
         run: |
-          pyinstaller --noconfirm --onefile --name BMLTelemetryViewer \
-            --add-data "config.cfg;." \
-            main.py
+          pyinstaller --noconfirm --onefile --name BMLTelemetryViewer --add-data "config.cfg;." main.py
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
