@@ -1,0 +1,180 @@
+{
+  "schema_version": 1,
+  "app_version": "0.2.22.0",
+  "session_id": "anon-session-003",
+  "landing_id": "00000000-0000-0000-0000-000000000003",
+  "timestamp_zulu": "2026-03-27T21:47:30Z",
+  "aircraft_title": "Generic Aircraft",
+  "airport_icao": "XXXX",
+  "departure_airport_icao": "YYYY",
+  "touchdown_fpm": -457,
+  "touchdown_groundspeed_kt": 123,
+  "touchdown_ias_kt": 123,
+  "max_g": 1.5,
+  "bounce_count": 3,
+  "airborne_time_seconds_total": 330,
+  "touchdown_profile": [
+    {
+      "t_ms": -1000,
+      "vertical_speed_fpm": -500
+    },
+    {
+      "t_ms": -950,
+      "vertical_speed_fpm": -510
+    },
+    {
+      "t_ms": -900,
+      "vertical_speed_fpm": -520
+    },
+    {
+      "t_ms": -850,
+      "vertical_speed_fpm": -530
+    },
+    {
+      "t_ms": -800,
+      "vertical_speed_fpm": -540
+    },
+    {
+      "t_ms": -750,
+      "vertical_speed_fpm": -550
+    },
+    {
+      "t_ms": -700,
+      "vertical_speed_fpm": -560
+    },
+    {
+      "t_ms": -650,
+      "vertical_speed_fpm": -570
+    },
+    {
+      "t_ms": -600,
+      "vertical_speed_fpm": -580
+    },
+    {
+      "t_ms": -550,
+      "vertical_speed_fpm": -590
+    },
+    {
+      "t_ms": -500,
+      "vertical_speed_fpm": -600
+    },
+    {
+      "t_ms": -450,
+      "vertical_speed_fpm": -610
+    },
+    {
+      "t_ms": -400,
+      "vertical_speed_fpm": -620
+    },
+    {
+      "t_ms": -350,
+      "vertical_speed_fpm": -630
+    },
+    {
+      "t_ms": -300,
+      "vertical_speed_fpm": -640
+    },
+    {
+      "t_ms": -250,
+      "vertical_speed_fpm": -650
+    },
+    {
+      "t_ms": -200,
+      "vertical_speed_fpm": -660
+    },
+    {
+      "t_ms": -150,
+      "vertical_speed_fpm": -670
+    },
+    {
+      "t_ms": -100,
+      "vertical_speed_fpm": -680
+    },
+    {
+      "t_ms": -50,
+      "vertical_speed_fpm": -690
+    }
+  ],
+  "rollout_track": [
+    {
+      "t_ms": 0,
+      "groundspeed_kt": 120.0
+    },
+    {
+      "t_ms": 50,
+      "groundspeed_kt": 119.8
+    },
+    {
+      "t_ms": 100,
+      "groundspeed_kt": 119.6
+    },
+    {
+      "t_ms": 150,
+      "groundspeed_kt": 119.4
+    },
+    {
+      "t_ms": 200,
+      "groundspeed_kt": 119.2
+    },
+    {
+      "t_ms": 250,
+      "groundspeed_kt": 119.0
+    },
+    {
+      "t_ms": 300,
+      "groundspeed_kt": 118.8
+    },
+    {
+      "t_ms": 350,
+      "groundspeed_kt": 118.6
+    },
+    {
+      "t_ms": 400,
+      "groundspeed_kt": 118.4
+    },
+    {
+      "t_ms": 450,
+      "groundspeed_kt": 118.2
+    },
+    {
+      "t_ms": 500,
+      "groundspeed_kt": 118.0
+    },
+    {
+      "t_ms": 550,
+      "groundspeed_kt": 117.8
+    },
+    {
+      "t_ms": 600,
+      "groundspeed_kt": 117.6
+    },
+    {
+      "t_ms": 650,
+      "groundspeed_kt": 117.4
+    },
+    {
+      "t_ms": 700,
+      "groundspeed_kt": 117.2
+    },
+    {
+      "t_ms": 750,
+      "groundspeed_kt": 117.0
+    },
+    {
+      "t_ms": 800,
+      "groundspeed_kt": 116.8
+    },
+    {
+      "t_ms": 850,
+      "groundspeed_kt": 116.6
+    },
+    {
+      "t_ms": 900,
+      "groundspeed_kt": 116.4
+    },
+    {
+      "t_ms": 950,
+      "groundspeed_kt": 116.2
+    }
+  ]
+}
