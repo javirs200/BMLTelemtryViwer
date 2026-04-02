@@ -1,0 +1,16 @@
+# Ignore Python files and folders
+__pycache__/
+*.py[cod]
+*.pyd
+*.pyo
+*.pyc
+*.pyt
+.pytest_cache/
+# virtualenvs
+venv/
+.env/
+ENV/
+env/
+
+# Ignore demoData folder
+/demoData/
