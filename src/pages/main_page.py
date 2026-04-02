@@ -1,5 +1,17 @@
+import sys
 import tkinter as tk
 from src.ui import StyledLabel, StyledButton, StyledFrame, COLORS, FONTS, SPACING
+
+
+def _bind_mousewheel(widget, canvas):
+    """Bind mouse wheel scrolling for cross-platform support."""
+    if sys.platform.startswith('win'):
+        widget.bind_all('<MouseWheel>', lambda e: canvas.yview_scroll(-1 * int(e.delta / 120), 'units'))
+    elif sys.platform == 'darwin':
+        widget.bind_all('<MouseWheel>', lambda e: canvas.yview_scroll(-1 * int(e.delta), 'units'))
+    else:
+        widget.bind_all('<Button-4>', lambda e: canvas.yview_scroll(-1, 'units'))
+        widget.bind_all('<Button-5>', lambda e: canvas.yview_scroll(1, 'units'))
 
 
 class MainPage(tk.Frame):
@@ -54,11 +66,10 @@ class MainPage(tk.Frame):
         
         canvas.pack(side="left", fill="both", expand=True)
         scrollbar.pack(side="right", fill="y")
-        
-        # Populate initial landings
-        self._populate_landings()
-    
-    def _populate_landings(self):
+
+        # Bind mouse wheel to scroll events
+        _bind_mousewheel(canvas, canvas)
+
         """Populate the landings list with responsive wrapping layout."""
         # Group landings by date
         landings_by_date = {}
@@ -75,8 +86,8 @@ class MainPage(tk.Frame):
             date_label.pack(padx=SPACING["md"], pady=(SPACING["lg"], SPACING["sm"]), anchor="w")
             
             landings_list = landings_by_date[date_key]
-            card_width = 180  # Fixed card width
-            max_cards_per_row = 4  # Maximum cards per row
+            card_width = 220  # Increased card width
+            max_cards_per_row = 3  # Fewer cards per row on wider cards
             
             # Create rows of cards
             for row_idx in range(0, len(landings_list), max_cards_per_row):
@@ -94,7 +105,7 @@ class MainPage(tk.Frame):
                     card_frame.pack(side="left", fill="both", expand=True, padx=SPACING["sm"], pady=SPACING["sm"])
                     
                     # Limit card width and height
-                    card_frame.config(width=card_width, height=90)
+                    card_frame.config(width=card_width, height=110)
                     card_frame.pack_propagate(False)
                     
                     # Card content
