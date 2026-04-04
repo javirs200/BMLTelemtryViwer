@@ -45,15 +45,31 @@ class PageManager:
                 config = json.loads(clean_content)
                 return config
         except Exception as e:
-            messagebox.showerror("Config Error", f"Failed to load config.cfg: {e}")
+            messagebox.showwarning("Config Warning", f"Failed to load config.cfg , Using default settings.")
             return {}
     
     def _load_landings(self):
         """Load all landing JSON files from config location."""
-        location = self.config.get('landingslocation', './demoData')
-        # Resolve relative paths
-        if location.startswith('.'):
-            location = os.path.join(os.path.dirname(os.path.dirname(__file__)), location.lstrip('.\\').lstrip('./'))
+        location = self.config.get('landingslocation')
+        
+        if not location:
+            messagebox.showwarning("Warning", "Landings location not specified in config.cfg using default path.")
+
+            # get base path ( documents folder )
+            base_path = os.path.expanduser("~/Documents")
+
+            # default path
+            location = os.path.join(base_path, "BeatMyLanding", "Landings")
+
+            return
+        else:
+            # check if relative path
+            if not os.path.isabs(location):
+                base_path = os.path.dirname(os.path.dirname(__file__))
+                location = os.path.join(base_path, location)
+            else:
+                location = os.path.normpath(location)
+            
         
         self.landings = []
         try:
