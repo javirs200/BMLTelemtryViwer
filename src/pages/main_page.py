@@ -22,6 +22,7 @@ class MainPage(tk.Frame):
         self.controller = controller
         self.scrollable_frame = None
         self._build_ui()
+        self._populate_landings()
     
     def _build_ui(self):
         """Build the main page UI."""
@@ -70,6 +71,7 @@ class MainPage(tk.Frame):
         # Bind mouse wheel to scroll events
         _bind_mousewheel(canvas, canvas)
 
+    def _populate_landings(self):
         """Populate the landings list with responsive wrapping layout."""
         # Group landings by date
         landings_by_date = {}
