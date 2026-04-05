@@ -19,3 +19,4 @@ BMLTelemetry Viewer is a local desktop tool to visualize BeatMyLanding telemetry
 ## Notes
 
 - (optional) Keep `config.cfg` next to executable for custom telemetry folder path
+- Data for testing can be generated using `demo_data_generator.py` script from branch `demoData`
