@@ -58,6 +58,8 @@ class PageManager:
         if not location:
             # mising location in config, use default path
             print("[Info] Landings location not specified in config.cfg, using default path.")
+            base_path = os.path.expanduser("~/Documents")
+            full_path = os.path.join(base_path, "BeatMyLanding", "Landings")
             print(f"[Info] Default landing path: {full_path}")
         else:
             # if location is specified log it
