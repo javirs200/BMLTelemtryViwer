@@ -56,24 +56,26 @@ class PageManager:
         location = self.config.get('landingslocation')
 
         if not location:
+            # mising location in config, use default path
             print("[Info] Landings location not specified in config.cfg, using default path.")
-            base_path = os.path.expanduser("~/Documents")
-            location = os.path.join(base_path, "BeatMyLanding", "Landings")
-            print(f"[Info] Default landing path: {location}")
+            print(f"[Info] Default landing path: {full_path}")
         else:
-            if not os.path.isabs(location):
-                base_path = os.path.dirname(os.path.dirname(__file__))
-                location = os.path.join(base_path, location)
+            # if location is specified log it
+            print(f"[Info] Loading landings from: {location}")
+            
+            # if absolute or relative path is specified, use it
+            if os.path.isabs(location):
+                full_path = location
             else:
-                location = os.path.normpath(location)
+                full_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), location)
 
         self.landings = []
         try:
-            if not os.path.exists(location):
-                print(f"[Warning] Landing data path not found: {location}")
+            if not os.path.exists(full_path):
+                print(f"[Warning] Landing data path not found: {full_path}")
                 return
 
-            for root, dirs, files in os.walk(location):
+            for root, dirs, files in os.walk(full_path):
                 for file in sorted(files):
                     if file.endswith('.json'):
                         filepath = os.path.join(root, file)
