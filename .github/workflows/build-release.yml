@@ -58,11 +58,12 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
+            const tagName = context.ref.replace('refs/tags/', '');
             const release = await github.rest.repos.createRelease({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              tag_name: context.ref.replace('refs/tags/', ''),
-              name: `Release ${context.ref_name}`,
+              tag_name: tagName,
+              name: `Release ${tagName}`,
               body: `Automated release from GitHub Actions.\nIncludes BMLTelemetryViewer.exe.`,
               draft: true,
               prerelease: false,
