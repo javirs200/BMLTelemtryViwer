@@ -1,7 +1,6 @@
 import os
 import json
 import tkinter as tk
-from tkinter import messagebox
 
 from src.pages.main_page import MainPage
 from src.pages.detail_page import DetailPage
@@ -36,6 +35,10 @@ class PageManager:
     def _load_config(self):
         """Load configuration from config.cfg."""
         config_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'config.cfg')
+        if not os.path.exists(config_path):
+            print("[Info] config.cfg not found, using default settings.")
+            return {}
+
         try:
             with open(config_path, 'r') as f:
                 # Remove comments from JSON
@@ -45,38 +48,31 @@ class PageManager:
                 config = json.loads(clean_content)
                 return config
         except Exception as e:
-            messagebox.showwarning("Config Warning", f"Failed to load config.cfg , Using default settings.")
+            print(f"[Warning] Failed to load config.cfg, using default settings: {e}")
             return {}
-    
+
     def _load_landings(self):
         """Load all landing JSON files from config location."""
         location = self.config.get('landingslocation')
-        
+
         if not location:
-            messagebox.showwarning("Warning", "Landings location not specified in config.cfg using default path.")
-
-            # get base path ( documents folder )
+            print("[Info] Landings location not specified in config.cfg, using default path.")
             base_path = os.path.expanduser("~/Documents")
-
-            # default path
             location = os.path.join(base_path, "BeatMyLanding", "Landings")
-
-            return
+            print(f"[Info] Default landing path: {location}")
         else:
-            # check if relative path
             if not os.path.isabs(location):
                 base_path = os.path.dirname(os.path.dirname(__file__))
                 location = os.path.join(base_path, location)
             else:
                 location = os.path.normpath(location)
-            
-        
+
         self.landings = []
         try:
             if not os.path.exists(location):
-                messagebox.showwarning("Warning", f"Landing data path not found: {location}")
+                print(f"[Warning] Landing data path not found: {location}")
                 return
-                
+
             for root, dirs, files in os.walk(location):
                 for file in sorted(files):
                     if file.endswith('.json'):
@@ -89,10 +85,9 @@ class PageManager:
                             print(f"Error loading {filepath}: {e}")
             self.landings.sort(key=lambda x: x.get('timestamp_zulu', ''), reverse=True)
         except Exception as e:
-            messagebox.showerror("Error", f"Failed to load landings: {e}")
-    
+            print(f"[Error] Failed to load landings: {e}")
+
     def _create_frames(self):
-        """Create all page frames."""
         for F in (MainPage, DetailPage):
             frame = F(self.container, self)
             self.frames[F] = frame
