@@ -78,13 +78,13 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const fs = require('fs');
-            const uploadUrl = ${{ steps.create_release.outputs.result }};
+            const releaseInfo = ${{ steps.create_release.outputs.result }};
             
             await github.rest.repos.uploadReleaseAsset({
-              url: uploadUrl.upload_url,
-              headers: {
-                'content-type': 'application/octet-stream',
-              },
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              release_id: releaseInfo.id,
+              name: 'BMLTelemetryViewer.exe',
               data: fs.readFileSync('./release/BMLTelemetryViewer.exe'),
             });
 
