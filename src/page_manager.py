@@ -12,7 +12,7 @@ class PageManager:
     def __init__(self, root):
         self.root = root
         self.root.title("BML Telemetry Viewer")
-        self.root.geometry("1000x700")
+        self.root.geometry("1000x900")
         self.root.minsize(800, 600)
         
         # Load configuration
